@@ -1,0 +1,10 @@
+version: '3'
+services:
+  convdb:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=diogo
+      - POSTGRES_PASSWORD=102030
+    ports:
+      - "5432:5432"
