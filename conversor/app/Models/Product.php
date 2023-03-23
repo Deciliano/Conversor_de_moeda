@@ -10,6 +10,6 @@ class Product extends Model
     public $timestamps = true;
 
 
-    protected $fillable = ['id','name', 'price', 'price_currency', 'currency'];
+    protected $fillable = ['id','name', 'price',];
 
 }
