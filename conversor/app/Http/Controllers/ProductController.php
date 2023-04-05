@@ -45,7 +45,6 @@ class ProductController
         return response()->json(["message" => "Produto deletado com sucesso"]);
     }
 
-
     public function get($id) {
         $product = $this->productService->getProductById($id);
         $currencies = [];
@@ -53,4 +52,5 @@ class ProductController
         $product->converted_prices = $convertedPrices;
         return response()->json($product);
     }
+    
 }
