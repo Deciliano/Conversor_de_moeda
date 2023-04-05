@@ -32,30 +32,25 @@ class ProductController
         $product = $this->productService->create($request->all());
         return response()->json(["id" => $product->id]);
     }
-
-    public function get($id) {
-        $product = $this->productService->getProductById($id);
-        $currencies = ['USD','CAD','GBP','ARS','BTC','LTC','EUR','JPY','CHF','AUD','CNY','ILS','ETH','XRP','DOGE'];
-        $convertedPrices = $this->currencyService->getConvertedPrices($product, $currencies);
     
-        $product = [
-            'id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->price,
-            'converted_prices' => $convertedPrices
-        ];
-        return response()->json($product);
+    public function update(Request $request, $id)
+    {
+        $product = $this->productService->update($request->all(), $id);
+        return response()->json(["id" => $product->id]);
     }
-
+    
     public function delete($id)
     {
         $this->productService->delete($id);
         return response()->json(["message" => "Produto deletado com sucesso"]);
     }
 
-    public function update(Request $request, $id)
-    {
-        $product = $this->productService->update($request->all(), $id);
-        return response()->json(["id" => $product->id]);
-    }    
+
+    public function get($id) {
+        $product = $this->productService->getProductById($id);
+        $currencies = [];
+        $convertedPrices = $this->currencyService->getConvertedPrices($product, $currencies);    
+        $product->converted_prices = $convertedPrices;
+        return response()->json($product);
+    }
 }

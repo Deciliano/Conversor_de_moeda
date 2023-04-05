@@ -30,7 +30,7 @@ class ProductService
         $currencyService = new CurrencyService();
 
         $product = $this->productRepository->get($id);
-        $currencies = $currencyService->currencie();
+        $currencies = [];
         $convertedPrices = $currencyService->getConvertedPrices($product, $currencies);
         $product = new Product([
             'id' => $product->id,
@@ -39,17 +39,6 @@ class ProductService
             'converted_prices' => $convertedPrices,
         ]);
         return $product;
-    }   
-
-    public function update(array $data, $id) {
-        // Obtenha o produto pelo id
-        $product = Product::findOrFail($id);
-    
-        // Atualize as informações do produto com os dados fornecidos
-        $product->update($data);
-    
-        // Retorne o produto atualizado
-        return $product;
     }
 
     public function create(array $data) {
@@ -57,6 +46,13 @@ class ProductService
     
         return $product;
     }
+
+    public function update(array $data, $id) {
+        $product = Product::findOrFail($id);
+        $product->update($data);
+        return $product;
+    }
+
     
     public function delete($id) {
         $product = Product::findOrFail($id);
