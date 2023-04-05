@@ -22,8 +22,7 @@ class ProductService
     public function all()
     {
         return $this->productRepository->all();
-    }
-    
+    }    
 
     public function getProductById($id)
     {
@@ -52,10 +51,10 @@ class ProductService
         $product->update($data);
         return $product;
     }
-
     
     public function delete($id) {
         $product = Product::findOrFail($id);
         $product->delete();
     }
+    
 }
