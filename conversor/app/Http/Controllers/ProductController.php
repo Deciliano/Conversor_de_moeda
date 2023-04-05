@@ -11,7 +11,6 @@ use App\Services\CurrencyService;
 
 class ProductController
 {
-
     private $productService;
     protected $currencyService;
 
